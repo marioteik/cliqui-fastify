@@ -2,9 +2,10 @@
   "name": "api_fastify",
   "version": "1.0.0",
   "description": "Cliqui Api Gateway",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"tsc --watch -p tsconfig.json\" \"nodemon build/index.js\"",
+    "start": "node ./build/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,12 @@
   "dependencies": {
     "eslint": "^8.26.0",
     "fastify": "^4.9.2",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "concurrently": "^7.5.0",
+    "nodemon": "^2.0.20"
   }
 }
