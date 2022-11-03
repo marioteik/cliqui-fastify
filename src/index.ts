@@ -1,24 +1,15 @@
-import Fastify, { FastifyInstance, RouteShorthandOptions } from "fastify";
+import * as dotenv from "dotenv";
+import Fastify, { FastifyInstance } from "fastify";
+import fastifyNow from "fastify-now";
+import path from "path";
 
-const server: FastifyInstance = Fastify({});
+dotenv.config();
 
-const opts: RouteShorthandOptions = {
-  schema: {
-    response: {
-      200: {
-        type: "object",
-        properties: {
-          pong: {
-            type: "string",
-          },
-        },
-      },
-    },
-  },
-};
+const server: FastifyInstance = Fastify({ logger: true });
 
-server.get("/ping", opts, async (request, reply) => {
-  return { pong: "it worked!" };
+server.register(fastifyNow, {
+  routesFolder: path.join(__dirname, "./routes"),
+  pathPrefix: "/api/v1",
 });
 
 const start = async () => {
@@ -33,4 +24,6 @@ const start = async () => {
   }
 };
 
-start();
+start().then(() => {
+  console.log("Server started");
+});

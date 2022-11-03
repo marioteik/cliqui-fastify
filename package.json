@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/marioteik/cliqui-fastify#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.0.5",
+    "dotenv": "^16.0.3",
     "eslint": "^8.26.0",
     "fastify": "^4.9.2",
+    "fastify-now": "^3.0.1",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4"
   },
