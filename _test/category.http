@@ -1,0 +1,3 @@
+### Phone Login
+GET http://localhost:3000/api/v1/category
+Accept: application/json
