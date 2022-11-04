@@ -31,7 +31,7 @@ const fastify_1 = __importDefault(require("fastify"));
 const fastify_now_1 = __importDefault(require("fastify-now"));
 const path_1 = __importDefault(require("path"));
 dotenv.config();
-const server = (0, fastify_1.default)({ logger: true });
+const server = (0, fastify_1.default)();
 server.register(fastify_now_1.default, {
     routesFolder: path_1.default.join(__dirname, "./routes"),
     pathPrefix: "/api/v1",
