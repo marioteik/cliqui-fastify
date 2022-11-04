@@ -30,12 +30,7 @@ const dotenv = __importStar(require("dotenv"));
 const fastify_1 = __importDefault(require("fastify"));
 const fastify_now_1 = __importDefault(require("fastify-now"));
 const path_1 = __importDefault(require("path"));
-if (process.env.NODE_ENV !== "production") {
-    dotenv.config({ path: path_1.default.resolve(process.cwd(), ".env.local") });
-}
-else {
-    dotenv.config();
-}
+dotenv.config();
 const server = (0, fastify_1.default)();
 server.register(fastify_now_1.default, {
     routesFolder: path_1.default.join(__dirname, "./routes"),

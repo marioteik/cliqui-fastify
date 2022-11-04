@@ -4,7 +4,7 @@
   "description": "Cliqui Api Gateway",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "concurrently \"supabase start\" \"tsc --watch -p tsconfig.json\" \"nodemon build/index.js\"",
+    "dev": "concurrently --timings \"supabase start\" \"tsc --watch -p tsconfig.json\" \"nodemon build/index.js\"",
     "start": "node ./build/index.js"
   },
   "repository": {
