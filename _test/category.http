@@ -1,3 +1,7 @@
-### Phone Login
+### List root categories
 GET http://localhost:3000/api/v1/category
+Accept: application/json
+
+### List subcategories
+GET http://localhost:3000/api/v1/category/subcategory?parentId=80508dc8-d7d9-44d5-8021-71b31bd38ab1
 Accept: application/json
