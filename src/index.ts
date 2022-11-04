@@ -3,7 +3,11 @@ import Fastify, { FastifyInstance } from "fastify";
 import fastifyNow from "fastify-now";
 import path from "path";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config({ path: path.resolve(process.cwd(), ".env.local") });
+} else {
+  dotenv.config();
+}
 
 const server: FastifyInstance = Fastify();
 
