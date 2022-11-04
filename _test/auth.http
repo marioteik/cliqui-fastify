@@ -14,5 +14,24 @@ Content-Type: application/json
 
 {
   "phone": "+5517991449166",
-  "token": "750007"
+  "token": "668582"
 }
+
+### Get logged user
+GET http://localhost:3000/api/v1/auth/user
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjY3NTcyNjM1LCJzdWIiOiJiMTU2ODQ3Yi1jODVkLTQ5YjItYmE1MC05ZTU3MmExOThjNDEiLCJlbWFpbCI6IiIsInBob25lIjoiNTUxNzk5MTQ0OTE2NiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6InBob25lIiwicHJvdmlkZXJzIjpbInBob25lIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJzZXNzaW9uX2lkIjoiNzdmMGEwOTUtZWU1MC00NDMyLWFmZTUtYTJjNDM4NjM1Yzg4In0.WRPjQNqp2SO_0nkioHB10V2U_i5FwqdOWin_xKFqxT0
+
+### Refresh token
+POST http://localhost:3000/api/v1/auth/refresh-token
+Accept: application/json
+Content-Type: application/json
+
+{
+  "refreshToken": "Tp8PjgDlBRwER4TDitMvwg"
+}
+
+### Logout
+GET http://localhost:3000/api/v1/auth/logout
+Accept: application/json

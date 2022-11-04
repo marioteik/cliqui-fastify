@@ -5,7 +5,7 @@ import path from "path";
 
 dotenv.config();
 
-const server: FastifyInstance = Fastify({ logger: true });
+const server: FastifyInstance = Fastify();
 
 server.register(fastifyNow, {
   routesFolder: path.join(__dirname, "./routes"),
