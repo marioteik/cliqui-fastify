@@ -1,5 +1,6 @@
 import { NowRequestHandler } from "fastify-now";
 import supabase from "../../infrastructure/common/supabase";
+import { Category } from "../../types/category";
 
 type Get = NowRequestHandler<{
   Reply: { categories: Category[] } | { message: string };
@@ -13,7 +14,9 @@ export const GET: Get = async (req, rep) => {
     .single();
 
   if (errorRootCategory) {
-    rep.status(500).send({ message: "No categories found" });
+    rep
+      .status(errorRootCategory.code ? parseInt(errorRootCategory.code) : 500)
+      .send(errorRootCategory);
     return;
   }
 
@@ -23,7 +26,8 @@ export const GET: Get = async (req, rep) => {
     .eq("parent", rootCategory?.id);
 
   if (error) {
-    rep.status(500).send(error);
+    rep.status(error.code ? parseInt(error.code) : 500).send(error);
+    return;
   }
 
   return { categories: [rootCategory, ...(data as Category[])] ?? [] };

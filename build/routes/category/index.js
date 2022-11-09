@@ -13,7 +13,9 @@ const GET = async (req, rep) => {
         .is("parent", null)
         .single();
     if (errorRootCategory) {
-        rep.status(500).send({ message: "No categories found" });
+        rep
+            .status(errorRootCategory.code ? parseInt(errorRootCategory.code) : 500)
+            .send(errorRootCategory);
         return;
     }
     const { data, error } = await supabase_1.default
@@ -21,7 +23,8 @@ const GET = async (req, rep) => {
         .select("id, title, type, parent")
         .eq("parent", rootCategory === null || rootCategory === void 0 ? void 0 : rootCategory.id);
     if (error) {
-        rep.status(500).send(error);
+        rep.status(error.code ? parseInt(error.code) : 500).send(error);
+        return;
     }
     return { categories: (_a = [rootCategory, ...data]) !== null && _a !== void 0 ? _a : [] };
 };
