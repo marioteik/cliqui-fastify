@@ -3,3 +3,5 @@ type Category = {
   title: string;
   type: string;
 };
+
+export type { Category };
