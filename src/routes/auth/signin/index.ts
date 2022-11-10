@@ -1,14 +1,14 @@
 import { NowRequestHandler } from "fastify-now";
-import { User } from "@supabase/supabase-js";
+import { Session, User } from "@supabase/supabase-js";
 import supabase from "../../../infrastructure/common/supabase";
 
 type Post = NowRequestHandler<{
   Body: { phone: string; password: string };
-  Reply: { message: string } | { user: User | null };
+  Reply: { message: string } | { user: User | null; session: Session | null };
 }>;
 
 export const POST: Post = async (req, rep) => {
-  const { data, error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signInWithPassword({
     phone: req.body?.phone,
     password: req.body?.password,
   });
@@ -17,7 +17,7 @@ export const POST: Post = async (req, rep) => {
     rep.status(500).send(error);
   }
 
-  return { user: data.user };
+  return { user: data.user, session: data.session };
 };
 
 POST.opts = {

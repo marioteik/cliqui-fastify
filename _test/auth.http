@@ -5,7 +5,17 @@ Content-Type: application/json
 
 {
   "phone": "+5517991449166",
-  "password": "test"
+  "password": "test123"
+}
+
+### Phone SignIn
+POST http://localhost:3000/api/v1/auth/signin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "phone": "+5517991449166",
+  "password": "test123"
 }
 
 ### Phone Login

@@ -1,30 +1,43 @@
 import { NowRequestHandler } from "fastify-now";
-import supabase from "../../infrastructure/common/supabase";
+import { getSupabase } from "../../infrastructure/common/supabase";
 import { Profile } from "../../types/profile";
 
 type Get = NowRequestHandler<{
   Params: { id: string };
-  Reply: { profile: Profile } | { message: string };
+  Reply: { profile: Profile | null } | { message: string };
 }>;
 
 export const GET: Get = async (req, rep) => {
-  const { data, error } = await supabase
+  if (!req.headers.authorization) {
+    return rep.status(401).send({ message: "Unauthorized" });
+  }
+
+  const supabase = getSupabase(req.headers.authorization);
+
+  const { data, error, status } = await supabase
     .from("profiles")
     .select("id, full_name, avatar_url, website")
-    .is("id", req.params.id)
-    .single();
-
-  if (!data) {
-    rep.status(404).send({ message: error?.message });
-    return;
-  }
+    .eq("id", req.params.id);
 
   if (error) {
-    rep.status(404).send(error);
+    rep.status(status).send(error);
     return;
   }
 
-  return { profile: data };
+  if (data && !data[0]) {
+    return { profile: null };
+  }
+
+  return { profile: data[0] };
 };
 
-GET.opts = {};
+GET.opts = {
+  schema: {
+    params: {
+      type: "object",
+      properties: {
+        id: { type: "string" },
+      },
+    },
+  },
+};
