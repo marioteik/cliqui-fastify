@@ -1,17 +1,17 @@
 ### Get a profile
-GET http://localhost:3000/api/v1/profile/feeda104-b021-4a98-a72b-ac6c99a27883
+GET {{host}}/profile/feeda104-b021-4a98-a72b-ac6c99a27883
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjY4MTA2MTk5LCJzdWIiOiJmZWVkYTEwNC1iMDIxLTRhOTgtYTcyYi1hYzZjOTlhMjc4ODMiLCJlbWFpbCI6IiIsInBob25lIjoiNTUxNzk5MTQ0OTE2NiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6InBob25lIiwicHJvdmlkZXJzIjpbInBob25lIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJzZXNzaW9uX2lkIjoiMTMxMTRmMTAtZTg3MC00ZTRmLTliNzMtZWQ2MTFiMmVmYTFhIn0.Cy0lhQka5AtIp4XmtpSWkrURe6i-7g6q3XXg7TXHDkE
+Authorization: Bearer {{token}}
 
 ### Update a user
-POST http://localhost:3000/api/v1/profile
+PUT {{host}}/profile/feeda104-b021-4a98-a72b-ac6c99a27883
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjY4MTA2MTk5LCJzdWIiOiJmZWVkYTEwNC1iMDIxLTRhOTgtYTcyYi1hYzZjOTlhMjc4ODMiLCJlbWFpbCI6IiIsInBob25lIjoiNTUxNzk5MTQ0OTE2NiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6InBob25lIiwicHJvdmlkZXJzIjpbInBob25lIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJzZXNzaW9uX2lkIjoiMTMxMTRmMTAtZTg3MC00ZTRmLTliNzMtZWQ2MTFiMmVmYTFhIn0.Cy0lhQka5AtIp4XmtpSWkrURe6i-7g6q3XXg7TXHDkE
+Authorization: Bearer {{token}}
 
 {
   "id": "feeda104-b021-4a98-a72b-ac6c99a27883",
   "full_name": "John Doe",
   "avatar_url": "https://img.estadao.com.br/thumbs/640/resources/jpg/4/3/1651264747334.jpg",
-  "website": "https://www.linkedin.com/in/marioteik"
+  "website": "https://www.linkedin.com/in/johndoe"
 }
