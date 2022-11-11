@@ -1,5 +1,5 @@
 ### Phone SignUp
-POST http://localhost:3000/api/v1/auth/signup
+POST {{host}}/auth/signup
 Accept: application/json
 Content-Type: application/json
 
@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 ### Phone SignIn
-POST http://localhost:3000/api/v1/auth/signin
+POST {{host}}/auth/signin
 Accept: application/json
 Content-Type: application/json
 
@@ -18,8 +18,13 @@ Content-Type: application/json
   "password": "test123"
 }
 
+> {%
+  client.global.set("token", response.body.session.access_token);
+  client.global.set("refreshToken", response.body.session.refresh_token);
+%}
+
 ### Phone Login
-POST http://localhost:3000/api/v1/auth/phone
+POST {{host}}/auth/phone
 Accept: application/json
 Content-Type: application/json
 
@@ -28,7 +33,7 @@ Content-Type: application/json
 }
 
 ### Code trade
-POST http://localhost:3000/api/v1/auth/token
+POST {{host}}/auth/token
 Accept: application/json
 Content-Type: application/json
 
@@ -38,20 +43,25 @@ Content-Type: application/json
 }
 
 ### Get logged user
-GET http://localhost:3000/api/v1/auth/user
+GET {{host}}/auth/user
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjY3NTkwMzYwLCJzdWIiOiJiMTU2ODQ3Yi1jODVkLTQ5YjItYmE1MC05ZTU3MmExOThjNDEiLCJlbWFpbCI6IiIsInBob25lIjoiNTUxNzk5MTQ0OTE2NiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6InBob25lIiwicHJvdmlkZXJzIjpbInBob25lIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJzZXNzaW9uX2lkIjoiZGQ1NWJiZGEtOWEyNC00YzAwLWEzYzItMGRkZmVjN2VmOWI0In0.y0FvZhquEij4oHSsRii_AM1Qj1BNgM7zQteLe7qpX_Q
+Authorization: Bearer {{token}}
 
 ### Refresh token
-POST http://localhost:3000/api/v1/auth/refresh-token
+POST {{host}}/auth/refresh-token
 Accept: application/json
 Content-Type: application/json
 
 {
-  "refreshToken": "Tp8PjgDlBRwER4TDitMvwg"
+  "refreshToken": "{{refreshToken}}"
 }
 
+> {%
+  client.global.set("token", response.body.session.access_token);
+  client.global.set("refreshToken", response.body.session.refresh_token);
+%}
+
 ### Logout
-GET http://localhost:3000/api/v1/auth/logout
+GET {{host}}/auth/logout
 Accept: application/json
